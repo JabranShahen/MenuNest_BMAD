@@ -1,0 +1,258 @@
+﻿{
+    "workflow_version":  "1.2.0",
+    "timestamps":  {
+                       "started":  "2025-12-06T01:26:49.5655055+00:00",
+                       "last_updated":  "2025-12-06T01:54:00.4217298+00:00"
+                   },
+    "mode":  "initial_scan",
+    "scan_level":  "deep",
+    "project_root":  "C:/Users/Jabra/Documents/GitHub/MenuNest",
+    "output_folder":  "C:/Users/Jabra/Documents/GitHub/MenuNest/MenuNest_BMAD/docs",
+    "completed_steps":  [
+                            {
+                                "step":  "step_1",
+                                "status":  "completed",
+                                "timestamp":  "2025-12-06T01:36:10.0457441+00:00",
+                                "summary":  "Classified as multi-part with 8 parts (mobile x4, library, backend, web x2)"
+                            },
+                            {
+                                "step":  "step_2",
+                                "status":  "completed",
+                                "timestamp":  "2025-12-06T01:37:10.1666370+00:00",
+                                "summary":  "Found existing docs (6 primary READMEs); user provided no extra focus areas"
+                            },
+                            {
+                                "step":  "step_3",
+                                "status":  "completed",
+                                "timestamp":  "2025-12-06T01:40:43.1305773+00:00",
+                                "summary":  "Tech stack analyzed per part; ERD located in Designs folder"
+                            },
+                            {
+                                "step":  "step_4",
+                                "status":  "completed",
+                                "timestamp":  "2025-12-06T01:44:19.4047824+00:00",
+                                "summary":  "Initial deep scan markers gathered; critical dirs enumerated; ERD noted"
+                            },
+                            {
+                                "step":  "step_5",
+                                "status":  "completed",
+                                "timestamp":  "2025-12-06T01:45:56.4249005+00:00",
+                                "summary":  "Source tree analysis written"
+                            },
+                            {
+                                "step":  "step_6",
+                                "status":  "completed",
+                                "timestamp":  "2025-12-06T01:48:20.2738348+00:00",
+                                "summary":  "Dev \u0026 deployment guide written"
+                            },
+                            {
+                                "step":  "step_7",
+                                "status":  "completed",
+                                "timestamp":  "2025-12-06T01:49:23.5525089+00:00",
+                                "summary":  "Integration \u0026 architecture notes captured (SignalR, Firebase Auth, shared package)"
+                            },
+                            {
+                                "step":  "step_8",
+                                "status":  "completed",
+                                "timestamp":  "2025-12-06T01:50:52.3978421+00:00",
+                                "summary":  "Architecture overview written"
+                            },
+                            {
+                                "step":  "step_9",
+                                "status":  "completed",
+                                "timestamp":  "2025-12-06T01:51:48.6167679+00:00",
+                                "summary":  "Supporting docs written (overview, component inventory)"
+                            },
+                            {
+                                "step":  "step_10",
+                                "status":  "completed",
+                                "timestamp":  "2025-12-06T01:52:38.3737091+00:00",
+                                "summary":  "Master index generated with placeholders for missing docs"
+                            },
+                            {
+                                "step":  "step_11",
+                                "status":  "completed",
+                                "timestamp":  "2025-12-06T01:54:00.4217298+00:00",
+                                "summary":  "Incomplete items generated (integration architecture, API contracts, data models, project parts); index updated"
+                            }
+                        ],
+    "current_step":  "step_12",
+    "findings":  {
+                     "project_classification":  "multi-part project with 8 parts: admin_app (mobile), kitchen_app (mobile), serve_app (mobile), table_app (mobile), shared_package (library), server (backend), website (web), landing_page (web)",
+                     "repository_type":  "multi-part",
+                     "technology_stack":  [
+                                              {
+                                                  "part_id":  "admin_app",
+                                                  "type":  "mobile",
+                                                  "language":  "Dart/Flutter",
+                                                  "frameworks":  "Flutter 3.x, provider, Firebase Core/Auth, Google Fonts",
+                                                  "integrations":  "Shared package for models/services; Firebase Auth",
+                                                  "notes":  "Material design; custom launcher icons"
+                                              },
+                                              {
+                                                  "part_id":  "kitchen_app",
+                                                  "type":  "mobile",
+                                                  "language":  "Dart/Flutter",
+                                                  "frameworks":  "Flutter 3.x, Firebase Core",
+                                                  "integrations":  "Shared package",
+                                                  "notes":  "KDS-style app; Google Fonts"
+                                              },
+                                              {
+                                                  "part_id":  "serve_app",
+                                                  "type":  "mobile",
+                                                  "language":  "Dart/Flutter",
+                                                  "frameworks":  "Flutter 3.x, Firebase Core/Auth",
+                                                  "integrations":  "Shared package",
+                                                  "notes":  "Service staff UI; custom launcher icons"
+                                              },
+                                              {
+                                                  "part_id":  "table_app",
+                                                  "type":  "mobile",
+                                                  "language":  "Dart/Flutter",
+                                                  "frameworks":  "Flutter 3.x, Firebase Core/Auth, HTTP, Shared Preferences, UUID",
+                                                  "integrations":  "Shared package",
+                                                  "notes":  "Menu/table-side app; build_runner/json_serializable in dev deps"
+                                              },
+                                              {
+                                                  "part_id":  "shared_package",
+                                                  "type":  "library",
+                                                  "language":  "Dart",
+                                                  "frameworks":  "Firebase Core/Auth, HTTP, Shared Preferences, SignalR",
+                                                  "integrations":  "Provides entities/services across apps",
+                                                  "notes":  "Assets for logo"
+                                              },
+                                              {
+                                                  "part_id":  "server",
+                                                  "type":  "backend",
+                                                  "language":  ".NET 8",
+                                                  "frameworks":  "ASP.NET Core, SignalR, Autofac DI, JWT Bearer, Azure Storage Blobs, FirebaseAdmin",
+                                                  "integrations":  "Project references for abstractions/usecases/services",
+                                                  "notes":  "Swashbuckle for Swagger"
+                                              },
+                                              {
+                                                  "part_id":  "website",
+                                                  "type":  "web",
+                                                  "language":  "TypeScript",
+                                                  "frameworks":  "Angular 20, Angular Material, AngularFire, Firebase/FirebaseUI",
+                                                  "integrations":  "UUID, CORS",
+                                                  "notes":  "SPA"
+                                              },
+                                              {
+                                                  "part_id":  "landing_page",
+                                                  "type":  "web",
+                                                  "language":  "HTML/CSS/JS",
+                                                  "frameworks":  "Static templates",
+                                                  "integrations":  "",
+                                                  "notes":  "Multiple HTML variants"
+                                              }
+                                          ],
+                     "architecture_patterns":  "Mobile apps share a Dart shared_package for models/services; Firebase Auth for identity; potential SignalR real-time via shared package. Backend uses .NET 8 layered projects (Abstractions, Services, Usecases, API) with Autofac DI, SignalR hubs, JWT auth, Azure Blob storage, Firebase admin. Web SPA built with Angular 20 + AngularFire/Material for customer-facing site; Landing pages are static HTML variants.",
+                     "erd_path":  "C:/Users/Jabra/Documents/GitHub/MenuNest/Designs/MenuNestDesigns-Entity Relation.drawio.xml"
+                 },
+    "outputs_generated":  [
+                              "project-scan-report.json",
+                              "source-tree-analysis.md",
+                              "development-guide.md",
+                              "integration-architecture.md",
+                              "architecture.md",
+                              "project-overview.md",
+                              "component-inventory.md",
+                              "index.md",
+                              "api-contracts.md",
+                              "data-models.md",
+                              "project-parts.md"
+                          ],
+    "resume_instructions":  "Starting from step 2",
+    "project_parts":  [
+                          {
+                              "part_id":  "admin_app",
+                              "project_type_id":  "mobile",
+                              "display_name":  "Mobile admin app",
+                              "root_path":  "C:/Users/Jabra/Documents/GitHub/MenuNest/MenuNestApp/menunest/admin_app"
+                          },
+                          {
+                              "part_id":  "kitchen_app",
+                              "project_type_id":  "mobile",
+                              "display_name":  "Mobile kitchen app",
+                              "root_path":  "C:/Users/Jabra/Documents/GitHub/MenuNest/MenuNestApp/menunest/kitchen_app"
+                          },
+                          {
+                              "part_id":  "serve_app",
+                              "project_type_id":  "mobile",
+                              "display_name":  "Mobile serve app",
+                              "root_path":  "C:/Users/Jabra/Documents/GitHub/MenuNest/MenuNestApp/menunest/serve_app"
+                          },
+                          {
+                              "part_id":  "table_app",
+                              "project_type_id":  "mobile",
+                              "display_name":  "Mobile table app",
+                              "root_path":  "C:/Users/Jabra/Documents/GitHub/MenuNest/MenuNestApp/menunest/table_app"
+                          },
+                          {
+                              "part_id":  "shared_package",
+                              "project_type_id":  "library",
+                              "display_name":  "Dart shared package",
+                              "root_path":  "C:/Users/Jabra/Documents/GitHub/MenuNest/MenuNestApp/menunest/shared_package"
+                          },
+                          {
+                              "part_id":  "server",
+                              "project_type_id":  "backend",
+                              "display_name":  ".NET backend",
+                              "root_path":  "C:/Users/Jabra/Documents/GitHub/MenuNest/MenuNestServer"
+                          },
+                          {
+                              "part_id":  "website",
+                              "project_type_id":  "web",
+                              "display_name":  "Angular website",
+                              "root_path":  "C:/Users/Jabra/Documents/GitHub/MenuNest/MenuNestWebsite"
+                          },
+                          {
+                              "part_id":  "landing_page",
+                              "project_type_id":  "web",
+                              "display_name":  "Static landing pages",
+                              "root_path":  "C:/Users/Jabra/Documents/GitHub/MenuNest/MenuNestLandingPage"
+                          }
+                      ],
+    "project_types":  [
+                          {
+                              "part_id":  "admin_app",
+                              "project_type_id":  "mobile",
+                              "display_name":  "Mobile admin app"
+                          },
+                          {
+                              "part_id":  "kitchen_app",
+                              "project_type_id":  "mobile",
+                              "display_name":  "Mobile kitchen app"
+                          },
+                          {
+                              "part_id":  "serve_app",
+                              "project_type_id":  "mobile",
+                              "display_name":  "Mobile serve app"
+                          },
+                          {
+                              "part_id":  "table_app",
+                              "project_type_id":  "mobile",
+                              "display_name":  "Mobile table app"
+                          },
+                          {
+                              "part_id":  "shared_package",
+                              "project_type_id":  "library",
+                              "display_name":  "Dart shared package"
+                          },
+                          {
+                              "part_id":  "server",
+                              "project_type_id":  "backend",
+                              "display_name":  ".NET backend"
+                          },
+                          {
+                              "part_id":  "website",
+                              "project_type_id":  "web",
+                              "display_name":  "Angular website"
+                          },
+                          {
+                              "part_id":  "landing_page",
+                              "project_type_id":  "web",
+                              "display_name":  "Static landing pages"
+                          }
+                      ]
+}
