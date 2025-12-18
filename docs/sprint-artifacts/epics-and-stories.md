@@ -51,11 +51,17 @@
 - **Acceptance Criteria:** Use shared header/panel/table/buttons/icon buttons/toggles and tokens; remove oversized toggles/plus icons; apply consistent padding/typography/colors; show shared empty-state and loading/skeleton where applicable; responsive layout without overflow; accessible focus/aria and WCAG AA contrast.
 - **Notes:** Completed.
 
-### Story: Menus Screen Redesign (Fresh Components) - Status: Ready for Dev
+### Story: Menus Screen Redesign (Fresh Components) - Status: In Progress
 - **Source:** `MenuNest_BMAD/docs/website/ux/menu-ux-redesign-story.md`.
 - **Outcome:** Rebuild the Menus page with a fresh component set (MenuHeader, MenuList, CategoryList, ItemList) using shared tokens and clean layout. Desktop shows three columns; 1440/1080 wraps to two; mobile stacks. Menus table shows Name + Actions only; Categories table shows Name/Items/Actions; items render as compact nested lists per category.
 - **Acceptance Criteria:** New components live in a dedicated folder; legacy menu styles/components untouched. Consistent gutters, row heights, paddings, and typography matching Branch/Categories; shared icon buttons/toggles sized uniformly; shared empty/skeleton states for branches/menus/categories/items; hover/selected states on rows; responsive wrapping at 1920/1440/1366/mobile without overflow; WCAG AA focus/contrast.
 - **Notes:** Build from scratch rather than patching legacy; reuse shared tokens and UI primitives where sensible.
+
+### Story: Menu Management Layout Frame & Scroll Containment - Status: In Progress
+- **Source:** `MenuNest_BMAD/docs/website/ux/menu-ux-frame-scroll-story.md`.
+- **Outcome:** Frame the Menu Management screen in a global container and give each column panel its own scrollable body (with sticky panel headers) so long lists don’t create endless page scroll.
+- **Acceptance Criteria:** See story file; includes global framing, per-panel scroll behavior, sticky headers, CTA placement, responsive wrap, and accessibility requirements.
+- **Notes:** Can be implemented as a quick remediation now or folded into the Menus Screen Redesign work.
 ## Epic: Environment & Config Hardening
 **Goal:** Remove hardcoded endpoints and unsafe defaults so environments can be deployed safely.  
 **Scope:** API appsettings, Flutter shared_package + apps, Angular env files, CORS.
