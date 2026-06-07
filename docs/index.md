@@ -1,51 +1,72 @@
-# Project Documentation Index
+# MenuNest Documentation Index
 
 ## Project Overview
-- **Type:** Multi-part (mobile + backend + web)
-- **Primary Language:** Dart/Flutter, .NET 8, TypeScript
-- **Architecture:** Layered API with SignalR; shared Dart package across Flutter apps; Angular SPA; static landing pages.
+
+- **Type:** Monorepo with 4 parts
+- **Primary Languages:** TypeScript, C#, Dart, HTML/CSS/JS
+- **Architecture:** Multi-client platform around a shared backend API and realtime hub
 
 ## Quick Reference
-- **Parts:**
-  - admin_app — Flutter (Firebase Auth, provider) — `MenuNestApp/menunest/admin_app`
-  - kitchen_app — Flutter (KDS) — `MenuNestApp/menunest/kitchen_app`
-  - serve_app — Flutter (waitstaff) — `MenuNestApp/menunest/serve_app`
-  - table_app — Flutter (table-side) — `MenuNestApp/menunest/table_app`
-  - shared_package — Dart library (entities/services/SignalR client) — `MenuNestApp/menunest/shared_package`
-  - server — ASP.NET Core API/SignalR — `MenuNestServer`
-  - website — Angular 20 SPA — `MenuNestWebsite`
-  - landing_page — static HTML — `MenuNestLandingPage`
+
+### Landing
+
+- **Type:** Web
+- **Root:** `MenuNestLandingPage`
+- **Role:** Marketing site and hosted app handoff
+
+### Website
+
+- **Type:** Web
+- **Root:** `MenuNestWebsite`
+- **Role:** Restaurant operator dashboard
+
+### Backend
+
+- **Type:** Backend
+- **Root:** `MenuNestServer\\MenuNestServer`
+- **Role:** Core API, auth validation, persistence, realtime, guest access
+
+### Mobile Suite
+
+- **Type:** Mobile
+- **Root:** `MenuNestApp\\menunest`
+- **Role:** Admin, table, kitchen, and service apps
 
 ## Generated Documentation
-- [Project Overview](./project-overview.md)
-- [Architecture](./architecture.md)
-- [Source Tree Analysis](./source-tree-analysis.md)
-- [Component Inventory](./component-inventory.md)
-- [Development & Deployment Guide](./development-guide.md)
-- [Integration Architecture](./integration-architecture.md)
-- [API Contracts](./api-contracts.md)
-- [Data Models](./data-models.md)
-- [Project Parts Metadata](./project-parts.md)
 
-## Existing Documentation
-- `MenuNestApp/README.md`
-- `MenuNestApp/menunest/admin_app/README.md`
-- `MenuNestApp/menunest/kitchen_app/README.md`
-- `MenuNestApp/menunest/serve_app/README.md`
-- `MenuNestApp/menunest/table_app/README.md`
-- `MenuNestWebsite/README.md`
-- `Designs/MenuNestDesigns-Entity Relation.drawio.xml` (ERD)
+- [Project Overview](./project-overview.md)
+- [Source Tree Analysis](./source-tree-analysis.md)
+- [Architecture - Landing](./architecture-landing.md)
+- [Architecture - Website](./architecture-website.md)
+- [Architecture - Backend](./architecture-backend.md)
+- [Architecture - Mobile Suite](./architecture-mobile-suite.md)
+- [Component Inventory - Website](./component-inventory-website.md)
+- [Component Inventory - Mobile Suite](./component-inventory-mobile-suite.md)
+- [Development Guide - Landing](./development-guide-landing.md)
+- [Development Guide - Website](./development-guide-website.md)
+- [Development Guide - Backend](./development-guide-backend.md)
+- [Development Guide - Mobile Suite](./development-guide-mobile-suite.md)
+- [API Contracts - Backend](./api-contracts-backend.md)
+- [Data Models - Backend](./data-models-backend.md)
+- [Integration Architecture](./integration-architecture.md)
+- [Deployment Guide](./deployment-guide.md)
+- [Project Parts Metadata](./project-parts.json)
+- [Project Scan Report](./project-scan-report.json)
+
+## Existing Documentation and Signals
+
+- `../MenuNestWebsite/README.md`
+- `../MenuNestApp/README.md`
+- Flutter app `README.md` files under `MenuNestApp/menunest/*`
+- `../MenuNestLandingPage/tests/landing-page-smoke.ps1`
+- Azure service dependency files under `../MenuNestServer/MenuNestServer/MenuNestAPI/Properties/ServiceDependencies`
 
 ## Getting Started
-1) Choose your area:
-   - Mobile apps: open corresponding Flutter app folder, run `flutter pub get`, then `flutter run`.
-   - Backend: `cd MenuNestServer/MenuNestAPI && dotnet run` (configure appsettings for Firebase/Blob).
-   - Angular SPA: `cd MenuNestWebsite && npm install && npm run start`.
-2) Configure environments:
-   - Firebase project IDs in backend `appsettings*.json`.
-   - ApiService base URL in `shared_package/lib/services/api_service.dart` should be env-driven.
-   - Tighten CORS in backend for production.
-3) Review ERD: `Designs/MenuNestDesigns-Entity Relation.drawio.xml`.
 
-## Incomplete Items
-- None noted in this pass. If gaps are found, add markers and re-run generation.
+For brownfield planning or implementation:
+
+1. Start with [Project Overview](./project-overview.md).
+2. Read the relevant architecture file for the part you are touching.
+3. Use [Integration Architecture](./integration-architecture.md) before making cross-part changes.
+4. For backend contract work, consult [API Contracts - Backend](./api-contracts-backend.md) and [Data Models - Backend](./data-models-backend.md).
+5. Use the per-part development guide for setup and execution commands.

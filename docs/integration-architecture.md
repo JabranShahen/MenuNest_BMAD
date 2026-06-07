@@ -1,36 +1,62 @@
 # Integration Architecture
 
-## Identity & Auth
-- **Provider:** Firebase Auth (all Flutter apps, Angular SPA).
-- **Backend validation:** JWT Bearer against Firebase project ID (`Firebase:ProjectId` in `MenuNestServer/MenuNestAPI/appsettings*.json`); JWKS fetched from Google; tokens cached with TTL.
-- **Clients:** Firebase ID token acquired in apps; `ApiService` attaches `Authorization: Bearer <idToken>` to API calls.
+## System View
 
-## API Interaction
-- **Base URL:** `https://menunestapi.azurewebsites.net/api` (hardcoded in `shared_package/lib/services/api_service.dart`; should be made environment-specific).
-- **Transport:** HTTPS with Firebase bearer tokens.
-- **Client wrapper:** `ApiService` (shared_package) provides GET/POST/PUT/DELETE with query support.
-- **Error handling:** Not centralized; recommend global interceptors and retry/backoff for network errors.
+MenuNest is organized around a shared backend API and a set of client surfaces.
 
-## Real-Time Updates
-- **SignalR Hub:** `/EntitySignalRHub` (backend). Methods: `JoinGroup`, `LeaveGroup`, `KeepAlive`.
-- **Client:** `signalr_netcore` dependency present in shared_package; apps can subscribe to entity/group events (implementation pending).
-- **Usage recommendation:** Join per-account or per-branch groups; push order/ticket/table status updates to reduce polling.
+```text
+Landing Page -----> Website Dashboard ----\
+                                           \
+Mobile Apps -------------------------------> Backend API -----> Cosmos DB
+                                            |        |
+                                            |        `-----> Azure Blob Storage
+                                            |
+                                            `-----> Azure SignalR
+                                            |
+                                            `-----> Firebase Admin / Auth
+```
 
-## Data Model Sharing
-- **Shared entities:** Defined in `shared_package/lib/entities` (Order, Ticket, Menu, Payment, Branch, Table, User, etc.); used by all Flutter apps.
-- **Serialization:** json_serializable/build_runner (table_app dev deps); consistent DTOs for API payloads.
+## Client-to-Backend Integration
 
-## Cross-Part Interactions
-- Mobile apps ↔ Backend: REST + Firebase bearer; SignalR planned for live updates.
-- Web SPA ↔ Backend: AngularFire Auth + REST; CORS currently wide-open (tighten in production).
-- Landing pages: Static; no backend coupling.
+### Website to Backend
 
-## Environment & Config Flow
-- Backend config: `appsettings*.json` (Firebase ProjectId, Azure Blob, CORS policy, JWT).
-- Client config: Firebase platform files (google-services.json / GoogleService-Info.plist), API base URL (needs env injection), SignalR endpoint (same host `/EntitySignalRHub`).
+- Uses HTTPS API calls through Angular services.
+- Authentication is Firebase-based on the client, with bearer tokens sent to the API.
+- Operational dashboards depend on backend data for branches, menus, tables, staff, and overview metrics.
 
-## Gaps / TODOs
-- Parameterize API base URL per environment (dev/stage/prod) instead of hardcoding Azure site.
-- Implement SignalR client wiring in Flutter apps; define group/topic strategy and message contracts.
-- Tighten CORS policy; define allowed origins per environment.
-- Add error/retry strategy and logging/telemetry across clients.
+### Mobile Suite to Backend
+
+- Uses shared REST services in `shared_package`.
+- Uses SignalR clients in the shared package for real-time updates.
+- Table access and guest bootstrap flow depend on backend-generated tokens and table access records.
+
+### Landing to Website
+
+- Landing page routes users to hosted app/dashboard URLs.
+- It also references an auth status page in the website/public asset surface.
+
+## Auth Integration
+
+- Website and mobile apps authenticate with Firebase.
+- Backend validates Firebase ID tokens.
+- Backend also uses Firebase Admin and Firebase REST APIs for account/user flows and guest token issuance.
+
+## Data and Event Flow
+
+1. A client authenticates via Firebase.
+2. The client sends authenticated requests to the backend API.
+3. The backend persists state in Cosmos DB and may generate blob URLs or guest access artifacts.
+4. Entity decorators and services publish updates through SignalR.
+5. Mobile clients consume real-time events via the shared package.
+
+## Configuration Coupling
+
+Key integration settings are currently embedded in source and config:
+
+- API base URL
+- SignalR hub URL
+- Static site/dashboard URLs
+- Firebase API key and service account material
+- Azure connection strings
+
+That coupling is the main operational risk in the current architecture.

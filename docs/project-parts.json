@@ -1,0 +1,60 @@
+{
+  "repository_type": "monorepo",
+  "parts": [
+    {
+      "id": "landing",
+      "name": "MenuNestLandingPage",
+      "type": "web",
+      "root": "MenuNestLandingPage",
+      "role": "Static marketing and acquisition site"
+    },
+    {
+      "id": "website",
+      "name": "MenuNestWebsite",
+      "type": "web",
+      "root": "MenuNestWebsite",
+      "role": "Restaurant operator dashboard"
+    },
+    {
+      "id": "backend",
+      "name": "MenuNestServer",
+      "type": "backend",
+      "root": "MenuNestServer\\MenuNestServer",
+      "role": "Core API, authentication, data persistence, and real-time updates"
+    },
+    {
+      "id": "mobile-suite",
+      "name": "MenuNestApp",
+      "type": "mobile",
+      "root": "MenuNestApp\\menunest",
+      "role": "Flutter apps for admin, table, kitchen, and service workflows"
+    }
+  ],
+  "integration_points": [
+    {
+      "from": "website",
+      "to": "backend",
+      "mechanism": "HTTPS REST API with Firebase bearer tokens"
+    },
+    {
+      "from": "mobile-suite",
+      "to": "backend",
+      "mechanism": "HTTPS REST API plus Azure SignalR hub"
+    },
+    {
+      "from": "landing",
+      "to": "website",
+      "mechanism": "Cross-site navigation to hosted dashboard and auth status page"
+    },
+    {
+      "from": "backend",
+      "to": "Firebase",
+      "mechanism": "Firebase Admin SDK and Firebase Auth REST API"
+    },
+    {
+      "from": "backend",
+      "to": "Azure services",
+      "mechanism": "Cosmos DB, Blob Storage, App Service, Static Web Apps, SignalR"
+    }
+  ]
+}
